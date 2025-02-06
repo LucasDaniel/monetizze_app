@@ -11,5 +11,7 @@ Route::put('/', 'TesteController@index');
 Route::delete('/', 'TesteController@index');
 */
 
+Route::get('/database', 'HomeController@database');
+
 Route::get('/', 'HomeController@index');
 Route::post('/tripulante/create', 'TripulanteController@store');
