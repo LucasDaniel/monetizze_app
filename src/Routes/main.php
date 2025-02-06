@@ -10,3 +10,5 @@ Route::post('/', 'TesteController@index');
 Route::put('/', 'TesteController@index');
 Route::delete('/', 'TesteController@index');
 */
+
+Route::get('/', 'HomeController@index');
