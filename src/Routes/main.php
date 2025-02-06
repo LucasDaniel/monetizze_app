@@ -12,4 +12,4 @@ Route::delete('/', 'TesteController@index');
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/about/{id}', 'HomeController@index');
+Route::get('/about', 'HomeController@index');
