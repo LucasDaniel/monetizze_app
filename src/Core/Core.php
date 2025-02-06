@@ -12,6 +12,8 @@ class Core {
 
         isset($_GET['url']) && $url .= $_GET['url'];
 
+        $url !== '/' && $url = rtrim($url, '/');
+
         $prefixController = 'App\\Controllers\\';
 
         $routeFound = false;
