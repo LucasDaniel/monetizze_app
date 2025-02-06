@@ -2,6 +2,8 @@
 
 namespace App\Http;
 
+use App\Enums\EnumMethod;
+
 class Route {
 
     private static array $routes = [];
@@ -10,7 +12,7 @@ class Route {
         self::$routes[] = [
             'path' => $path,
             'action' => $action,
-            'method' => 'GET',
+            'method' => EnumMethod::GET,
         ];
     }
 
@@ -18,7 +20,7 @@ class Route {
         self::$routes[] = [
             'path' => $path,
             'action' => $action,
-            'method' => 'POST',
+            'method' => EnumMethod::POST,
         ];
     }
 
@@ -26,15 +28,7 @@ class Route {
         self::$routes[] = [
             'path' => $path,
             'action' => $action,
-            'method' => 'PUT',
-        ];
-    }
-
-    public static function path(string $path, string $action): void {
-        self::$routes[] = [
-            'path' => $path,
-            'action' => $action,
-            'method' => 'PATH',
+            'method' => EnumMethod::PUT,
         ];
     }
 
@@ -42,10 +36,10 @@ class Route {
         self::$routes[] = [
             'path' => $path,
             'action' => $action,
-            'method' => 'DELETE',
+            'method' => EnumMethod::DELETE,
         ];
     }
-    
+
     public static function routes(): array {
         return self::$routes;
     }
