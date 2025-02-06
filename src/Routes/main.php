@@ -12,4 +12,4 @@ Route::delete('/', 'TesteController@index');
 */
 
 Route::get('/', 'HomeController@index');
-Route::get('/about', 'HomeController@index');
+Route::post('/tripulante/create', 'TripulanteController@store');
