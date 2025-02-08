@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Database;
+use PDO;
 
 class Sorteio extends Database {
 
@@ -16,7 +17,8 @@ class Sorteio extends Database {
     public static function save(array $data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::insertSorteio());
-        $statement->execute([$data['numeros_sorteados']]);
+        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'], PDO::PARAM_STR);
+        $statement->execute();
         return $pdo->lastInsertId() > 0;
     }
 
@@ -24,7 +26,7 @@ class Sorteio extends Database {
         return "INSERT INTO 
                     sorteio (numeros_sorteados)
                 VALUES 
-                    (?);";
+                    (:numeros_sorteados)";
     }
 
 }

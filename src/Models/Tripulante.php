@@ -3,13 +3,15 @@
 namespace App\Models;
 
 use App\Models\Database;
+use PDO;
 
 class Tripulante extends Database {
 
     public static function save(array $data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::insertTripulante());
-        $statement->execute([$data['name']]);
+        $statement->bindParam(":nome", $data['nome'], PDO::PARAM_STR);
+        $statement->execute();
         return $pdo->lastInsertId() > 0;
     }
 
@@ -17,7 +19,7 @@ class Tripulante extends Database {
         return "INSERT INTO 
                     tripulante (nome)
                 VALUES 
-                    (?);";
+                    (:nome)";
     }
 
 }

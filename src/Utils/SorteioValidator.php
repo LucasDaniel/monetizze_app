@@ -8,11 +8,11 @@ class SorteioValidator extends Validator {
 
     public static function validator(array $data) {
 
-        $fields = self::validate([
+        $fields = [
             'numeros_sorteados' => $data['numeros_sorteados'] ?? '',
-        ]);
-        
-        if (!is_countable($fields)) return false;
+        ];
+
+        self::validate($fields);
 
         return $fields;
     }
