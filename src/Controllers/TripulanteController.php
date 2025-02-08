@@ -8,10 +8,6 @@ use App\Controllers\Controller;
 use App\Services\TripulanteService;
 
 class TripulanteController extends Controller {
-
-    public function teste(Request $request, Response $response) {
-        return "pqp";
-    }
     
     public function store(Request $request, Response $response) {
        
