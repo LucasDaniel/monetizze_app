@@ -7,7 +7,14 @@ use App\Models\Tripulante;
 
 class Database {
     public static function getConnection() {
-        return new PDO("pgsql:host=host.docker.internal;port=5432;dbname=monetizze","root","root");
+
+        $host = 'host.docker.internal';
+        $port = '5432';
+        $dbname = 'monetizze';
+        $user = 'root';
+        $pass = 'root';
+
+        return new PDO("pgsql:host=$host;port=$port;dbname=$dbname",$user,$pass);
     }
 
     public static function migrate() {
