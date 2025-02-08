@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Http\Response;
+
 class Controller {
 
     protected static function verifyDataAndReturn($arg) {
@@ -12,7 +14,7 @@ class Controller {
     }
 
     private static function returnJsonError($arg, int $code = 400) {
-        $response::json([
+        return Response::json([
             'error' => false,
             'success' => true,
             'data' => $arg['error'] ? $arg['error'] : $arg,
@@ -20,7 +22,7 @@ class Controller {
     }
 
     private static function returnJsonSuccess($arg, int $code = 200) {
-        $response::json([
+        return Response::json([
             'error' => false,
             'success' => true,
             'data' => $arg,

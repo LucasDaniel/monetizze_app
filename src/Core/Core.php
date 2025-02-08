@@ -37,14 +37,14 @@ class Core {
                 [$controller, $action] = explode('@', $route['action']);
                 $controller = $prefixController.$controller;
                 $extendController = new $controller();
-                $extendController->$action(new Request, new Response, $matches);
+                $extendController->$action(new Request, $matches);
             }
         }
 
         if (!$routeFound) {
             $controller = $prefixController.'NotFoundController';
             $extendController = new $controller();
-            $extendController->index(new Request, new Response);
+            $extendController->index(new Request);
         }
     }
 

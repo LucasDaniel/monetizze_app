@@ -3,13 +3,12 @@
 namespace App\Controllers;
 
 use App\Http\Request;
-use App\Http\Response;
 use App\Controllers\Controller;
 use App\Services\TripulanteService;
 
 class TripulanteController extends Controller {
     
-    public function store(Request $request, Response $response) {
+    public function store(Request $request) {
        
         $body = $request::body();
 
@@ -18,6 +17,5 @@ class TripulanteController extends Controller {
         return self::verifyDataAndReturn($tripulanteCreate);
         
     }
-
 
 }

@@ -16,3 +16,4 @@ Route::delete('/', 'TesteController@index');
 
 Route::get('/', 'HomeController@index');
 Route::post('/tripulante/create', 'TripulanteController@store');
+Route::post('/tripulante-bilhete/create', 'TripulanteBilheteController@store');
