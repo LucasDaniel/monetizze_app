@@ -20,7 +20,7 @@ class SorteioService {
     public static function updateSorteio() {
         $return = false;
         try {
-            $prizeNumbers = self::generateWinNumbers();
+            $prizeNumbers = self::generateNumbers();
             $return = Sorteio::updateSorteio($prizeNumbers);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
@@ -28,25 +28,30 @@ class SorteioService {
         return $return;
     }
 
-    private static function generateWinNumbers() {
+    /**
+     * Gera os numeros a partir da quantidade enviada por parametro
+     */
+    public static function generateNumbers($quantNumbers) {
 
         //Cria as variaveis de controle
-        $chosenNumberArr = [0,0,0,0,0,0];
+        $chosenNumberArr = [];
+        for($i = 0; $i < $quantNumbers; $i++) $chosenNumberArr[$i] = 0;
         $quantChosenNumbers = 0;
         $chosenNumber = -1;
 
         //Escolhe os numeros e guarda eles no array
-        while($quantChosenNumbers < 6) {
+        while($quantChosenNumbers < $quantNumbers) {
             $chosenNumber = rand(1,60);
             if (!in_array($chosenNumber,$chosenNumberArr)) {
                 $chosenNumberArr[$quantChosenNumbers] = $chosenNumber;
                 $quantChosenNumbers++;
             }
         }
+        
         //Organiza os numeros na ordem crescente
         sort($chosenNumberArr);
 
-        //Gera o array do sorteio
+        //Gera o string a partir do array do sorteio
         $prizeNumbers = implode(',', $chosenNumberArr);
 
         return $prizeNumbers;

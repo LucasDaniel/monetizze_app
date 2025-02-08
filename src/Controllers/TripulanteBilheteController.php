@@ -18,4 +18,14 @@ class TripulanteBilheteController extends Controller {
         
     }
 
+    public function createRandomNumbers(Request $request) {
+
+        $body = $request::body();
+
+        $tripulanteBilheteCreate = TripulanteBilheteService::createRandomNumbers($body);
+
+        return self::verifyDataAndReturn($tripulanteBilheteCreate);
+
+    }
+
 }

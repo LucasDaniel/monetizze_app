@@ -43,4 +43,21 @@ class TripulanteBilhete extends Database {
                     numeros_escolhidos LIKE :numeros_escolhidos";
     }
 
+    public static function validateQuantTryMaxNumbers(array $data) {
+        $pdo = self::getConnection();
+        $statement = $pdo->prepare(self::rawSelectQuantTryMaxNumbers());
+        $statement->bindParam(":id_tripulante", $data['id_tripulante'], PDO::PARAM_INT);
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchColumn();
+    }
+
+    private static function rawSelectQuantTryMaxNumbers() {
+        return "SELECT count(*)
+                FROM tripulante_bilhete
+                WHERE 
+                    id_tripulante = :id_tripulante AND
+                    id_sorteio = :id_sorteio";
+    }
+
 }
