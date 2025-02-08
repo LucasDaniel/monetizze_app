@@ -10,10 +10,16 @@ class HomeController {
         echo "Hello World";
     }
 
-    public function database() {
+    public function migrate() {
         print_r("executando migrate<br><br>");
         Database::migrate();
         print_r("<br><br>migrate executado");
+    }
+
+    public function seeder() {
+        print_r("executando seeder<br><br>");
+        Database::seeder();
+        print_r("<br><br>seeder executado");
     }
 
 }

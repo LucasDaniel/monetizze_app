@@ -11,7 +11,8 @@ Route::put('/', 'TesteController@index');
 Route::delete('/', 'TesteController@index');
 */
 
-Route::get('/database', 'HomeController@database');
+//Route::get('/migrate', 'HomeController@migrate');
+//Route::get('/seeder', 'HomeController@seeder');
 
 Route::get('/', 'HomeController@index');
 Route::post('/tripulante/create', 'TripulanteController@store');
