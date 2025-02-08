@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  php:
+    build: .
+    ports:
+      - "80:80"
+    volumes:
+      - ./:/var/www/html
+
+  postgres:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: monetizze
+    ports:
+      - "5432:5432"
+
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5000:80"

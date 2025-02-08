@@ -5,25 +5,19 @@ namespace App\Models;
 use PDO;
 
 class Database {
-    public function getConnection() {
-        $pdo = new PDO("sqlite:database.db");
-        return $pdo;
+    public static function getConnection() {
+        return new PDO("pgsql:host=host.docker.internal;port=5432;dbname=monetizze","root","root");
     }
 
     public static function migrate() {
-        $pdo = new PDO("sqlite:database.db");
-        print_r("<br><br>");
-        print_r($pdo);
-        $pdo->exec("CREATE TABLE Personsaaa (
+        $pdo = self::getConnection();
+        $pdo->exec("CREATE TABLE Personsaaaaa (
                         PersonID int,
                         LastName varchar(255),
                         FirstName varchar(255),
                         Address varchar(255),
                         City varchar(255)
                     );");
-        print_r("<br><br>Comitando...");
-        //$pdo->commit();
-        print_r("<br><br>");
     }
 
     private function createTables() {
