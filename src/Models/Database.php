@@ -22,7 +22,7 @@ class Database {
         return "CREATE TABLE IF NOT EXISTS 
                         tripulante (
                             id  SERIAL PRIMARY KEY,
-                            nome VARCHAR(255) 
+                            nome VARCHAR(255) UNIQUE
                         );";
     }
 
