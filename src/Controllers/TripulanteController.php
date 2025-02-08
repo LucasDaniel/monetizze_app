@@ -4,9 +4,10 @@ namespace App\Controllers;
 
 use App\Http\Request;
 use App\Http\Response;
+use App\Controllers\Controller;
 use App\Services\TripulanteService;
 
-class TripulanteController {
+class TripulanteController extends Controller {
 
     public function teste(Request $request, Response $response) {
         return "pqp";
@@ -18,19 +19,7 @@ class TripulanteController {
 
         $tripulanteCreate = TripulanteService::create($body);
 
-        if (isset($tripulanteCreate['error']) || !$tripulanteCreate) {
-            return $response::json([
-                'error' => true,
-                'success' => false,
-                'data' => $tripulanteCreate['error'] ?? $tripulanteCreate,
-            ],400);
-        }
-
-        return $response::json([
-            'error' => false,
-            'success' => true,
-            'data' => $body,
-        ],201);
+        return self::verifyDataAndReturn($tripulanteCreate);
         
     }
 
