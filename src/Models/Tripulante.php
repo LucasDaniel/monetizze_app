@@ -9,13 +9,13 @@ class Tripulante extends Database {
 
     public static function save(array $data) {
         $pdo = self::getConnection();
-        $statement = $pdo->prepare(self::insertTripulante());
+        $statement = $pdo->prepare(self::rawInsertTripulante());
         $statement->bindParam(":nome", $data['nome'], PDO::PARAM_STR);
         $statement->execute();
         return $pdo->lastInsertId() > 0;
     }
 
-    public static function insertTripulante() {
+    private static function rawInsertTripulante() {
         return "INSERT INTO 
                     tripulante (nome)
                 VALUES 

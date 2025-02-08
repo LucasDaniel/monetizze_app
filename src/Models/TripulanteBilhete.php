@@ -9,7 +9,7 @@ class TripulanteBilhete extends Database {
 
     public static function save(array $data) {
         $pdo = self::getConnection();
-        $statement = $pdo->prepare(self::insertTripulanteBilhete());
+        $statement = $pdo->prepare(self::rawInsertTripulanteBilhete());
         $statement->bindParam(":id_tripulante", $data['id_tripulante'], PDO::PARAM_INT);
         $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
         $statement->bindParam(":numeros_escolhidos", $data['numeros_escolhidos'], PDO::PARAM_STR);
@@ -17,7 +17,7 @@ class TripulanteBilhete extends Database {
         return $pdo->lastInsertId() > 0;
     }
 
-    private static function insertTripulanteBilhete() {
+    private static function rawInsertTripulanteBilhete() {
         return "INSERT INTO 
                     tripulante_bilhete (id_tripulante,id_sorteio,numeros_escolhidos)
                 VALUES 
@@ -26,7 +26,7 @@ class TripulanteBilhete extends Database {
 
     public static function verifySameNumbersToSorteio(array $data) {
         $pdo = self::getConnection();
-        $statement = $pdo->prepare(self::selectSameNumbersToSorteio());
+        $statement = $pdo->prepare(self::rawSelectSameNumbersToSorteio());
         $statement->bindParam(":id_tripulante", $data['id_tripulante'], PDO::PARAM_INT);
         $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
         $statement->bindParam(":numeros_escolhidos", $data['numeros_escolhidos'], PDO::PARAM_STR);
@@ -34,7 +34,7 @@ class TripulanteBilhete extends Database {
         return $statement->fetchColumn() > 0;
     }
 
-    private static function selectSameNumbersToSorteio() {
+    private static function rawSelectSameNumbersToSorteio() {
         return "SELECT count(*)
                 FROM tripulante_bilhete
                 WHERE 

@@ -6,7 +6,7 @@ use PDO;
 use App\Models\Tripulante;
 
 class Database {
-    public static function getConnection() {
+    protected static function getConnection() {
 
         $host = 'host.docker.internal';
         $port = '5432';
