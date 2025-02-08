@@ -10,7 +10,6 @@ class Validator {
                 throw new \Exception("O campo ($field) é requerido");
             }
         }
-
         return $fields;
     }
 

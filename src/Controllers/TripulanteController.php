@@ -7,22 +7,26 @@ use App\Http\Response;
 use App\Services\TripulanteService;
 
 class TripulanteController {
+
+    public function teste(Request $request, Response $response) {
+        return "pqp";
+    }
     
     public function store(Request $request, Response $response) {
        
         $body = $request::body();
 
-        $tripulanteService = TripulanteService::create($body);
+        $tripulanteCreate = TripulanteService::create($body);
 
-        if (isset($tripulanteService['error'])) {
+        if (isset($tripulanteCreate['error']) || !$tripulanteCreate) {
             return $response::json([
                 'error' => true,
                 'success' => false,
-                'data' => $tripulanteService['error'],
+                'data' => $tripulanteCreate['error'] ?? $tripulanteCreate,
             ],400);
         }
 
-        $response::json([
+        return $response::json([
             'error' => false,
             'success' => true,
             'data' => $body,

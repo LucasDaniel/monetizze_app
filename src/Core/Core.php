@@ -35,7 +35,6 @@ class Core {
                 }
 
                 [$controller, $action] = explode('@', $route['action']);
-
                 $controller = $prefixController.$controller;
                 $extendController = new $controller();
                 $extendController->$action(new Request, new Response, $matches);

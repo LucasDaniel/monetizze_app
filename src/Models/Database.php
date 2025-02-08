@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use PDO;
+use App\Models\Tripulante;
 
 class Database {
     public static function getConnection() {
@@ -46,19 +47,10 @@ class Database {
     }
 
     public static function seeder() {
-        $pdo = self::getConnection();
-        $pdo->exec(self::seederTripulantes('Lucas'));
-        $pdo->exec(self::seederTripulantes('Daniel'));
-        $pdo->exec(self::seederTripulantes('Beltrame'));
-        $pdo->exec(self::seederTripulantes('Lima'));
-        $pdo->exec(self::seederTripulantes('Rodrigues'));
-    }
-
-    private static function seederTripulantes(string $name) {
-        print_r("executando seederTripulantes $name <br><br>");
-        return "INSERT INTO 
-                    tripulante (nome)
-                VALUES 
-                    ('$name');";
+        Tripulante::save(['name'=>'Lucas']);
+        Tripulante::save(['name'=>'Daniel']);
+        Tripulante::save(['name'=>'Beltrame']);
+        Tripulante::save(['name'=>'Lima']);
+        Tripulante::save(['name'=>'Rodrigues']);
     }
 }
