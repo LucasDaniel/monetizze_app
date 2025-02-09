@@ -9,22 +9,6 @@ use App\Models\TripulanteBilhete;
 
 class TripulanteBilheteValidator extends Validator {
 
-    public static function validator(array $data) {
-
-        $fields = [
-            'id_tripulante' => [ $data['id_tripulante'] ?? '', 'integer' ],
-            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
-            'numeros_escolhidos' => [ $data['numeros_escolhidos'] ?? '', 'string' ],
-        ];
-
-        self::validate($fields);
-        //TripulanteValidator::verifyIdTripulanteExists($fields);
-        //SorteioValidator::verifyIdSorteioExists($fields);
-        SorteioValidator::verifySorteioNotHappened($fields);
-        self::validatorSameNumbers($data);
-        
-    }
-
     public static function validateTryRandomNumbers(array $data) {
 
         $fields = [
@@ -35,8 +19,6 @@ class TripulanteBilheteValidator extends Validator {
         ];
         
         self::validate($fields);
-        //TripulanteValidator::verifyIdTripulanteExists($fields);
-        //SorteioValidator::verifyIdSorteioExists($fields);
         SorteioValidator::verifySorteioNotHappened($fields);
         self::validateQuantNumbers($data);
         self::validateQuantTryNumbers($data);

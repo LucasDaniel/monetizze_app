@@ -9,17 +9,6 @@ use App\Services\SorteioService;
 use PDOException;
 
 class TripulanteBilheteService {
-    
-    public static function create(array $data) {
-        $return = false;
-        try {
-            TripulanteBilheteValidator::validator($data);
-            $return = TripulanteBilhete::save($data);
-        } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
-        }
-        return $return;
-    }
 
     public static function createRandomNumbers(array $data) {
         try {

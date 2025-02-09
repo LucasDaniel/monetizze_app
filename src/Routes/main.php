@@ -16,7 +16,6 @@ Route::delete('/', 'TesteController@index');
 
 Route::get('/', 'HomeController@index');
 Route::post('/tripulante/create', 'TripulanteController@store');
-Route::post('/tripulante-bilhete/create', 'TripulanteBilheteController@store');
 Route::post('/tripulante-bilhete/create-random-numbers', 'TripulanteBilheteController@createRandomNumbers');
 Route::post('/sorteio/create', 'SorteioController@store');
 Route::post('/sorteio/generate-win-numbers', 'SorteioController@generateWinNumbers');

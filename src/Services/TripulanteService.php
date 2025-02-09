@@ -17,7 +17,7 @@ class TripulanteService {
         } catch (PDOException $e) {
             if ($e->errorInfo[0] == 23505) return ['error' => explode('=',$e->errorInfo[2])[1]];
             return ['error' => $e->getMessage()];
-         } catch (\Exception $e) {
+        } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }
         return $return;

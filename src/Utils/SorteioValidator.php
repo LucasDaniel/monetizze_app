@@ -7,14 +7,6 @@ use App\Models\Sorteio;
 
 class SorteioValidator extends Validator {
 
-    public static function validator(array $data) {
-        $fields = [
-            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', 'integer' ],
-        ];
-
-        self::validate($fields);
-    }
-
     public static function verifyWinNumbers(array $data) {
         $fields = [
             'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
