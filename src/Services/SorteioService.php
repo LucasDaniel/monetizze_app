@@ -10,7 +10,7 @@ class SorteioService {
     public static function createEmpty() {
         $return = false;
         try {
-            $data['numeros_sorteados'] = "";
+            $data['numeros_sorteados'][0] = "";
             $return = Sorteio::save($data);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];

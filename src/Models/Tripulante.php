@@ -22,4 +22,19 @@ class Tripulante extends Database {
                     (:nome)";
     }
 
+    public static function verifyIdTripulanteExists(array $data) {
+        $pdo = self::getConnection();
+        $statement = $pdo->prepare(self::rawVerifyIdTripulanteExists());
+        $statement->bindParam(":id_tripulante", $data['id_tripulante'][0], PDO::PARAM_STR);
+        $statement->execute();
+        return $statement->fetchColumn() > 0;
+    }
+
+    private static function rawVerifyIdTripulanteExists() {
+        return "SELECT count(*)
+                FROM tripulante
+                WHERE 
+                    id = :id_tripulante ";
+    }
+
 }

@@ -9,7 +9,7 @@ class SorteioValidator extends Validator {
 
     public static function validator(array $data) {
         $fields = [
-            'numeros_sorteados' => $data['numeros_sorteados'] ?? '',
+            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', 'integer' ],
         ];
 
         self::validate($fields);
@@ -17,24 +17,32 @@ class SorteioValidator extends Validator {
 
     public static function verifyWinNumbers(array $data) {
         $fields = [
-            'id_sorteio' => $data['id_sorteio'] ?? '',
-            'numeros_sorteados' => $data['numeros_sorteados'] ?? '',
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
+            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', 'string' ],
         ];
 
         self::validate($fields);
         self::verifyIdSorteioExists($fields);
-        return self::verifySorteioNotHappened($fields);
+        self::verifySorteioNotHappened($fields);
     }
 
-    private static function verifyIdSorteioExists(array $data) {
-        $sorteioExists = Sorteio::verifyIdSorteioExists($data);
+    private static function returnVerifyIdSorteioExists(array $data) {
+        return Sorteio::verifyIdSorteioExists($data);
+    }
+
+    public static function verifyIdSorteioExists(array $data) {
+        $sorteioExists = self::returnVerifyIdSorteioExists($data);
         if (!$sorteioExists) {
             throw new \Exception("O Id do sorteio não existe");
         }
     }
 
-    private static function verifySorteioNotHappened(array $data) {
-        $sorteioHappened = Sorteio::verifySorteioHappened($data);
+    private static function returnVerifySorteioNotHappened(array $data) {
+        return Sorteio::verifySorteioNotHappened($data);
+    }
+
+    public static function verifySorteioNotHappened(array $data) {
+        $sorteioHappened = self::returnVerifySorteioNotHappened($data);
         if ($sorteioHappened) {
             throw new \Exception("O sorteio já foi concluido");
         }

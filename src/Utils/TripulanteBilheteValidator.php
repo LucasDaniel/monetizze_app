@@ -3,6 +3,8 @@
 namespace App\Utils;
 
 use App\Utils\Validator;
+use App\Utils\SorteioValidator;
+use App\Utils\TripulanteValidator;
 use App\Models\TripulanteBilhete;
 
 class TripulanteBilheteValidator extends Validator {
@@ -10,28 +12,34 @@ class TripulanteBilheteValidator extends Validator {
     public static function validator(array $data) {
 
         $fields = [
-            'id_tripulante' => $data['id_tripulante'] ?? '',
-            'id_sorteio' => $data['id_sorteio'] ?? '',
-            'numeros_escolhidos' => $data['numeros_escolhidos'] ?? '',
+            'id_tripulante' => [ $data['id_tripulante'] ?? '', 'integer' ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
+            'numeros_escolhidos' => [ $data['numeros_escolhidos'] ?? '', 'string' ],
         ];
 
         self::validate($fields);
-        self::validatorSameNumbers($fields);
+        //TripulanteValidator::verifyIdTripulanteExists($fields);
+        //SorteioValidator::verifyIdSorteioExists($fields);
+        SorteioValidator::verifySorteioNotHappened($fields);
+        self::validatorSameNumbers($data);
         
     }
 
     public static function validateTryRandomNumbers(array $data) {
 
         $fields = [
-            'id_tripulante' => $data['id_tripulante'] ?? '',
-            'id_sorteio' => $data['id_sorteio'] ?? '',
-            'quantTryNumbers' => $data['quantTryNumbers'] ?? '',
-            'quantNumbers' => $data['quantNumbers'] ?? '',
+            'id_tripulante' => [ $data['id_tripulante'] ?? '', 'integer' ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
+            'quantTryNumbers' => [ $data['quantTryNumbers'] ?? '', 'integer' ],
+            'quantNumbers' => [ $data['quantNumbers'] ?? '', 'integer' ],
         ];
         
         self::validate($fields);
-        self::validateQuantNumbers($fields);
-        self::validateQuantTryNumbers($fields);
+        //TripulanteValidator::verifyIdTripulanteExists($fields);
+        //SorteioValidator::verifyIdSorteioExists($fields);
+        SorteioValidator::verifySorteioNotHappened($fields);
+        self::validateQuantNumbers($data);
+        self::validateQuantTryNumbers($data);
         self::validateQuantTryMaxNumbers($fields);
     }
 
@@ -52,13 +60,13 @@ class TripulanteBilheteValidator extends Validator {
 
     private static function validateQuantTryMaxNumbers(array $data) {
         $numbersTry = TripulanteBilhete::validateQuantTryMaxNumbers($data);
-        if (($numbersTry + $data['quantTryNumbers']) > 50) {
+        if (($numbersTry + $data['quantTryNumbers'][0]) > 50) {
             throw new \Exception("A quantidade de apostas por usuario não pode ultrapassar 50 apostas");
         }
     }
 
     public static function returnValidatorSameNumbers(array $data) {
-        $numbersSorteio = TripulanteBilhete::verifySameNumbersToSorteio($data);
+        return TripulanteBilhete::verifySameNumbersToSorteio($data);
     }
 
     private static function validatorSameNumbers(array $data) {

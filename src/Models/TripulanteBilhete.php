@@ -46,8 +46,8 @@ class TripulanteBilhete extends Database {
     public static function validateQuantTryMaxNumbers(array $data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::rawSelectQuantTryMaxNumbers());
-        $statement->bindParam(":id_tripulante", $data['id_tripulante'], PDO::PARAM_INT);
-        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->bindParam(":id_tripulante", $data['id_tripulante'][0], PDO::PARAM_INT);
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'][0], PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchColumn();
     }

@@ -10,7 +10,7 @@ class Sorteio extends Database {
     public static function save(array $data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::rawInsertSorteio());
-        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'], PDO::PARAM_STR);
+        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'][0], PDO::PARAM_STR);
         $statement->execute();
         return $pdo->lastInsertId() > 0;
     }
@@ -25,8 +25,8 @@ class Sorteio extends Database {
     public static function updateSorteio($data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::rawUpdateSorteio());
-        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
-        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'], PDO::PARAM_STR);
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'][0], PDO::PARAM_INT);
+        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'][0], PDO::PARAM_STR);
         $statement->execute();
         return $data;
     }
@@ -43,7 +43,7 @@ class Sorteio extends Database {
     public static function verifyIdSorteioExists($data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::rawSelectIdSorteioExists());
-        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'][0], PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchColumn() > 0;
     }
@@ -57,15 +57,15 @@ class Sorteio extends Database {
                     id = :id_sorteio";
     }
 
-    public static function verifySorteioHappened($data) {
+    public static function verifySorteioNotHappened($data) {
         $pdo = self::getConnection();
-        $statement = $pdo->prepare(self::rawVerifySorteioHappened());
-        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement = $pdo->prepare(self::rawVerifySorteioNotHappened());
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'][0], PDO::PARAM_INT);
         $statement->execute();
         return $statement->fetchColumn() > 0;
     }
 
-    private static function rawVerifySorteioHappened() {
+    private static function rawVerifySorteioNotHappened() {
         return "SELECT 
                     count(*)
                 FROM 
