@@ -25,8 +25,8 @@ class Sorteio extends Database {
     public static function updateSorteio($data) {
         $pdo = self::getConnection();
         $statement = $pdo->prepare(self::rawUpdateSorteio());
-        $statement->bindParam(":id_sorteio", $data['id_sorteio'][0], PDO::PARAM_INT);
-        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'][0], PDO::PARAM_STR);
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->bindParam(":numeros_sorteados", $data['numeros_sorteados'], PDO::PARAM_STR);
         $statement->execute();
         return $data;
     }
