@@ -10,18 +10,20 @@ class SorteioService {
     public static function createEmpty() {
         $return = false;
         try {
-            $return = Sorteio::createEmpty();
+            $data['numeros_sorteados'] = "";
+            $return = Sorteio::save($data);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }
         return $return;
     }
 
-    public static function updateSorteio() {
+    public static function updateSorteio(array $data) {
         $return = false;
         try {
-            $prizeNumbers = self::generateNumbers();
-            $return = Sorteio::updateSorteio($prizeNumbers);
+            $data['numeros_sorteados'] = self::generateNumbers();
+            SorteioValidator::verifyWinNumbers($data);
+            $return = Sorteio::updateSorteio($data);
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];
         }
@@ -31,7 +33,7 @@ class SorteioService {
     /**
      * Gera os numeros a partir da quantidade enviada por parametro
      */
-    public static function generateNumbers($quantNumbers) {
+    public static function generateNumbers(int $quantNumbers = 6) {
 
         //Cria as variaveis de controle
         $chosenNumberArr = [];

@@ -18,4 +18,14 @@ class SorteioController extends Controller {
         
     }
 
+    public function generateWinNumbers(Request $request) {
+       
+        $body = $request::body();
+
+        $sorteioWinNumbers = SorteioService::updateSorteio($body);
+
+        return self::verifyDataAndReturn($sorteioWinNumbers);
+        
+    }
+
 }

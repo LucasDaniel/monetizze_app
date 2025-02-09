@@ -13,8 +13,6 @@ class TripulanteValidator extends Validator {
         ];
 
         self::validate($fields);
-
-        return $fields;
     }
 
 }
