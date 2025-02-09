@@ -4,6 +4,7 @@ namespace App\Utils;
 
 use App\Utils\Validator;
 use App\Models\Sorteio;
+use App\Exceptions\IdSorteioNotExistsException;
 
 class SorteioValidator extends Validator {
 
@@ -25,7 +26,7 @@ class SorteioValidator extends Validator {
     public static function verifyIdSorteioExists(array $data) {
         $sorteioExists = self::returnVerifyIdSorteioExists($data);
         if (!$sorteioExists) {
-            throw new \Exception("O Id do sorteio não existe");
+            IdSorteioNotExistsException::exception();
         }
     }
 
