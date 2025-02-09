@@ -13,7 +13,11 @@ class HtmlController extends Controller {
         $body = $request::body();
 
         $json = HtmlService::generateJson($body);
-        
+
+        if (isset($json['error']) || !$json) {
+            return self::verifyDataAndReturn($json);
+        }
+
         $html = HtmlService::generateHTML($json);
 
         echo $html;

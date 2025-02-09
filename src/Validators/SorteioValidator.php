@@ -6,6 +6,7 @@ use App\Validators\Validator;
 use App\Models\Sorteio;
 use App\Exceptions\IdSorteioNotExistsException;
 use App\Exceptions\SorteioHappenedException;
+use App\Exceptions\SorteioNotHappenedException;
 
 class SorteioValidator extends Validator {
 

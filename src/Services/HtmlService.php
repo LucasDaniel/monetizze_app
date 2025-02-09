@@ -18,7 +18,7 @@ class HtmlService extends BaseService {
                 'tripulante_bilhetes' => TripulanteBilhete::selectTripulantesBilhetesSorteio($data)
             ];
         } catch (\Exception $e) {
-            return self::error($e->getMessage()."aaa");
+            return self::error($e->getMessage());
         }
         return $return;
     }
