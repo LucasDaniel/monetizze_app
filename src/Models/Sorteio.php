@@ -75,4 +75,21 @@ class Sorteio extends Database {
                     numeros_sorteados != ''";
     }
 
+    public static function selectSorteio($data) {
+        $pdo = self::getConnection();
+        $statement = $pdo->prepare(self::rawSelectSorteio());
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
+
+    private static function rawSelectSorteio() {
+        return "SELECT 
+                    *
+                FROM 
+                    sorteio
+                WHERE 
+                    id = :id_sorteio";
+    }
+
 }

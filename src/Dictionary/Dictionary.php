@@ -12,6 +12,7 @@ class Dictionary {
                 'fieldNotType' => "O campo (@field) de valor @value ele não é um @type",
                 'idSorteioNotExists' => "O Id do sorteio não existe",
                 'sorteioHappened' => "O sorteio já foi concluido",
+                'sorteioNotHappened' => "O sorteio ainda não foi feito",
                 'validateQuantNumbers' => "A quantidade de numeros a sortear não esta entre 6 e 10 (inclusive)",
                 'validateQuantTryNumbersGreaterThanZero' => "A quantidade de apostas precisa ser maior que 0",
                 'validateQuantTryNumbersLessThanFiftyOne' => "A quantidade de apostas por usuário não pode ultrapassar 50 apostas",

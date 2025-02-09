@@ -24,7 +24,7 @@ class TripulanteBilheteService {
                 }
             }
         } catch (PDOException $e) {
-            if ($e->errorInfo[0] == 23503) return ['error' => "Valor não encontrado na tabela"];
+            if ($e->errorInfo[0] == 23505) return ['error' => explode('=',$e->errorInfo[2])[1]];
             return ['error' => $e->getMessage()];
         } catch (\Exception $e) {
             return ['error' => $e->getMessage()];

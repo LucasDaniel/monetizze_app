@@ -42,6 +42,13 @@ class SorteioValidator extends Validator {
         }
     }
 
+    public static function verifySorteioHappened(array $data) {
+        $sorteioHappened = self::returnVerifySorteioNotHappened($data);
+        if (!$sorteioHappened) {
+            SorteioNotHappenedException::exception();
+        }
+    }
+
     
 
 }

@@ -31,8 +31,10 @@ class Tripulante extends Database {
     }
 
     private static function rawVerifyIdTripulanteExists() {
-        return "SELECT count(*)
-                FROM tripulante
+        return "SELECT 
+                    count(*)
+                FROM 
+                    tripulante
                 WHERE 
                     id = :id_tripulante ";
     }

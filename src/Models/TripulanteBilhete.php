@@ -35,8 +35,10 @@ class TripulanteBilhete extends Database {
     }
 
     private static function rawSelectSameNumbersToSorteio() {
-        return "SELECT count(*)
-                FROM tripulante_bilhete
+        return "SELECT 
+                    count(*)
+                FROM 
+                    tripulante_bilhete
                 WHERE 
                     id_tripulante = :id_tripulante AND
                     id_sorteio = :id_sorteio AND
@@ -53,11 +55,31 @@ class TripulanteBilhete extends Database {
     }
 
     private static function rawSelectQuantTryMaxNumbers() {
-        return "SELECT count(*)
-                FROM tripulante_bilhete
+        return "SELECT 
+                    count(*)
+                FROM 
+                    tripulante_bilhete
                 WHERE 
                     id_tripulante = :id_tripulante AND
                     id_sorteio = :id_sorteio";
+    }
+
+    public static function selectTripulantesBilhetesSorteio(array $data) {
+        $pdo = self::getConnection();
+        $statement = $pdo->prepare(self::rawSelectTripulantesBilhetesSorteio());
+        $statement->bindParam(":id_sorteio", $data['id_sorteio'], PDO::PARAM_INT);
+        $statement->execute();
+        return $statement->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    private static function rawSelectTripulantesBilhetesSorteio() {
+        return "SELECT 
+                    t.nome, tb.numeros_escolhidos
+                FROM 
+                    tripulante_bilhete tb
+                    INNER JOIN tripulante t ON t.id = tb.id_tripulante
+                WHERE 
+                    tb.id_sorteio = :id_sorteio";
     }
 
 }
