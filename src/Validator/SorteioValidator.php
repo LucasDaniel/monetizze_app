@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Utils;
+namespace App\Validators;
 
-use App\Utils\Validator;
+use App\Validators\Validator;
 use App\Models\Sorteio;
 use App\Exceptions\IdSorteioNotExistsException;
 use App\Exceptions\SorteioHappenedException;

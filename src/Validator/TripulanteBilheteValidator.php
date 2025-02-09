@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Utils;
+namespace App\Validators;
 
-use App\Utils\Validator;
-use App\Utils\SorteioValidator;
-use App\Utils\TripulanteValidator;
+use App\Validators\Validator;
+use App\Validators\SorteioValidator;
+use App\Validators\TripulanteValidator;
 use App\Models\TripulanteBilhete;
 use App\Exceptions\ValidateQuantNumbersException;
 use App\Exceptions\ValidateQuantTryNumbersGreaterThanZero;

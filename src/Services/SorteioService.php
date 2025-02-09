@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Utils\SorteioValidator;
+use App\Validators\SorteioValidator;
 use App\Models\Sorteio;
 
 class SorteioService {

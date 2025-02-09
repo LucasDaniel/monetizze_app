@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Utils\TripulanteBilheteValidator;
+use App\Validators\TripulanteBilheteValidator;
 use App\Models\TripulanteBilhete;
 use App\Services\SorteioService;
 

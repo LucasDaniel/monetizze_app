@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Utils;
+namespace App\Validators;
 
 use App\Exceptions\FieldRequiredException;
 use App\Exceptions\FieldTypeException;

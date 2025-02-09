@@ -2,7 +2,7 @@
 
 namespace App\Services;
 
-use App\Utils\TripulanteValidator;
+use App\Validators\TripulanteValidator;
 use App\Models\Tripulante;
 
 use PDOException;
