@@ -54,10 +54,10 @@ class Database {
     }
 
     public static function seeder() {
-        Tripulante::save(['name'=>'Lucas']);
-        Tripulante::save(['name'=>'Daniel']);
-        Tripulante::save(['name'=>'Beltrame']);
-        Tripulante::save(['name'=>'Lima']);
-        Tripulante::save(['name'=>'Rodrigues']);
+        Tripulante::save(['nome'=>'Lucas']);
+        Tripulante::save(['nome'=>'Daniel']);
+        Tripulante::save(['nome'=>'Beltrame']);
+        Tripulante::save(['nome'=>'Lima']);
+        Tripulante::save(['nome'=>'Rodrigues']);
     }
 }
