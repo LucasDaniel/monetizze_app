@@ -5,6 +5,7 @@ namespace App\Utils;
 use App\Utils\Validator;
 use App\Models\Sorteio;
 use App\Exceptions\IdSorteioNotExistsException;
+use App\Exceptions\SorteioHappenedException;
 
 class SorteioValidator extends Validator {
 
@@ -37,7 +38,7 @@ class SorteioValidator extends Validator {
     public static function verifySorteioNotHappened(array $data) {
         $sorteioHappened = self::returnVerifySorteioNotHappened($data);
         if ($sorteioHappened) {
-            throw new \Exception("O sorteio já foi concluido");
+            SorteioHappenedException::exception();
         }
     }
 

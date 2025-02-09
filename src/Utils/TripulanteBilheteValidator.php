@@ -6,6 +6,10 @@ use App\Utils\Validator;
 use App\Utils\SorteioValidator;
 use App\Utils\TripulanteValidator;
 use App\Models\TripulanteBilhete;
+use App\Exceptions\ValidateQuantNumbersException;
+use App\Exceptions\ValidateQuantTryNumbersGreaterThanZero;
+use App\Exceptions\ValidateQuantTryNumbersLessThanFiftyOne;
+use App\Exceptions\ValidatorSameNumbers;
 
 class TripulanteBilheteValidator extends Validator {
 
@@ -27,23 +31,23 @@ class TripulanteBilheteValidator extends Validator {
 
     private static function validateQuantNumbers(array $data) {
         if ($data['quantNumbers'] < 6 || $data['quantNumbers'] > 10) {
-            throw new \Exception("A quantidade de numeros a sortear não esta entre 6 e 10 (inclusive)");
+            ValidateQuantNumbersException::exception();
         }
     }
 
     private static function validateQuantTryNumbers(array $data) {
         if ($data['quantTryNumbers'] < 1) {
-            throw new \Exception("A quantidade de apostas precisa ser maior que 0");
+            ValidateQuantTryNumbersGreaterThanZero::exception();
         }
         if ($data['quantTryNumbers'] > 50) {
-            throw new \Exception("A quantidade de apostas por usuário não pode ultrapassar 50 apostas");
+            ValidateQuantTryNumbersLessThanFiftyOne::exception();
         }
     }
 
     private static function validateQuantTryMaxNumbers(array $data) {
         $numbersTry = TripulanteBilhete::validateQuantTryMaxNumbers($data);
         if (($numbersTry + $data['quantTryNumbers'][0]) > 50) {
-            throw new \Exception("A quantidade de apostas por usuario não pode ultrapassar 50 apostas");
+            ValidateQuantTryNumbersLessThanFiftyOne::exception();
         }
     }
 
@@ -54,7 +58,7 @@ class TripulanteBilheteValidator extends Validator {
     private static function validatorSameNumbers(array $data) {
         $numbersSorteio = self::returnValidatorSameNumbers($data);
         if ($numbersSorteio) {
-            throw new \Exception("Esses numeros já foram apostados para esse usuario nessa aposta");
+            ValidatorSameNumbers::exception();
         }
     }
 
