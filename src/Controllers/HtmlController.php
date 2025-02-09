@@ -4,6 +4,7 @@ namespace App\Controllers;
 
 use App\Http\Request;
 use App\Services\HtmlService;
+use App\Http\Response;
 
 class HtmlController extends Controller {
     
@@ -11,9 +12,13 @@ class HtmlController extends Controller {
        
         $body = $request::body();
 
-        $htmlGenerate = HtmlService::generate($body);
+        $json = HtmlService::generateJson($body);
         
-        return self::verifyDataAndReturn($htmlGenerate);
+        $html = HtmlService::generateHTML($json);
+
+        echo $html;
+
+        return;
     }
 
 }
