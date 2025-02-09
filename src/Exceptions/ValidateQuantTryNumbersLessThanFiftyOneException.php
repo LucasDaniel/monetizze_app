@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use App\Exceptions\BaseException;
 
-class ValidateQuantTryNumbersLessThanFiftyOne extends BaseException
+class ValidateQuantTryNumbersLessThanFiftyOneException extends BaseException
 {
     public static function exception()
     {

@@ -7,9 +7,9 @@ use App\Validators\SorteioValidator;
 use App\Validators\TripulanteValidator;
 use App\Models\TripulanteBilhete;
 use App\Exceptions\ValidateQuantNumbersException;
-use App\Exceptions\ValidateQuantTryNumbersGreaterThanZero;
-use App\Exceptions\ValidateQuantTryNumbersLessThanFiftyOne;
-use App\Exceptions\ValidatorSameNumbers;
+use App\Exceptions\ValidateQuantTryNumbersGreaterThanZeroException;
+use App\Exceptions\ValidateQuantTryNumbersLessThanFiftyOneException;
+use App\Exceptions\ValidatorSameNumbersException;
 
 class TripulanteBilheteValidator extends Validator {
 
@@ -37,17 +37,17 @@ class TripulanteBilheteValidator extends Validator {
 
     private static function validateQuantTryNumbers(array $data) {
         if ($data['quantTryNumbers'] < 1) {
-            ValidateQuantTryNumbersGreaterThanZero::exception();
+            ValidateQuantTryNumbersGreaterThanZeroException::exception();
         }
         if ($data['quantTryNumbers'] > 50) {
-            ValidateQuantTryNumbersLessThanFiftyOne::exception();
+            ValidateQuantTryNumbersLessThanFiftyOneException::exception();
         }
     }
 
     private static function validateQuantTryMaxNumbers(array $data) {
         $numbersTry = TripulanteBilhete::validateQuantTryMaxNumbers($data);
         if (($numbersTry + $data['quantTryNumbers'][0]) > 50) {
-            ValidateQuantTryNumbersLessThanFiftyOne::exception();
+            ValidateQuantTryNumbersLessThanFiftyOneException::exception();
         }
     }
 
@@ -58,7 +58,7 @@ class TripulanteBilheteValidator extends Validator {
     private static function validatorSameNumbers(array $data) {
         $numbersSorteio = self::returnValidatorSameNumbers($data);
         if ($numbersSorteio) {
-            ValidatorSameNumbers::exception();
+            ValidatorSameNumbersException::exception();
         }
     }
 

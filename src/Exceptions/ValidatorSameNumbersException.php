@@ -4,7 +4,7 @@ namespace App\Exceptions;
 
 use App\Exceptions\BaseException;
 
-class ValidatorSameNumbers extends BaseException
+class ValidatorSameNumbersException extends BaseException
 {
     public static function exception()
     {
