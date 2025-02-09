@@ -8,7 +8,7 @@ use App\Services\SorteioService;
 
 use PDOException;
 
-class TripulanteBilheteService {
+class TripulanteBilheteService extends BaseService {
 
     public static function createRandomNumbers(array $data) {
         try {

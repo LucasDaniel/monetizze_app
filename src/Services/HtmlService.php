@@ -7,9 +7,7 @@ use App\Validators\HtmlValidator;
 use App\Models\Sorteio;
 use App\Models\TripulanteBilhete;
 
-use PDOException;
-
-class HtmlService {
+class HtmlService extends BaseService {
     
     public static function generate(array $data) {
         $return = false;
@@ -20,7 +18,7 @@ class HtmlService {
                 'tripulante_bilhetes' => TripulanteBilhete::selectTripulantesBilhetesSorteio($data)
             ];
         } catch (\Exception $e) {
-            return ['error' => $e->getMessage()];
+            return self::error($e->getMessage()."aaa");
         }
         return $return;
     }

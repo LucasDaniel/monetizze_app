@@ -7,7 +7,7 @@ use App\Models\Tripulante;
 
 use PDOException;
 
-class TripulanteService {
+class TripulanteService extends BaseService {
     
     public static function create(array $data) {
         $return = false;

@@ -5,7 +5,7 @@ namespace App\Services;
 use App\Validators\SorteioValidator;
 use App\Models\Sorteio;
 
-class SorteioService {
+class SorteioService extends BaseService {
     
     public static function createEmpty() {
         $return = false;
