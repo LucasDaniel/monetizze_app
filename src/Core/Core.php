@@ -29,7 +29,7 @@ class Core {
                     Response::json([
                         'error' => true,
                         'success' => false,
-                        'message' => "Method not allowed",
+                        'message' => "Method not a",
                     ],405);
                     return;
                 }

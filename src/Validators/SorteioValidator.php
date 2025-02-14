@@ -6,13 +6,14 @@ use App\Validators\Validator;
 use App\Models\Sorteio;
 use App\Exceptions\IdSorteioNotExistsException;
 use App\Exceptions\SorteioHappenedException;
+use App\Enums\TypesEnum;
 
 class SorteioValidator extends Validator {
 
     public static function verifyWinNumbers(array $data) {
         $fields = [
-            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
-            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', 'string' ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER->value ],
+            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', TypesEnum::STRING->value ],
         ];
 
         self::validate($fields);

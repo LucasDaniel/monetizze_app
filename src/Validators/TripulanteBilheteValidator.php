@@ -10,16 +10,19 @@ use App\Exceptions\ValidateQuantNumbersException;
 use App\Exceptions\ValidateQuantTryNumbersGreaterThanZero;
 use App\Exceptions\ValidateQuantTryNumbersLessThanFiftyOne;
 use App\Exceptions\ValidatorSameNumbers;
+use App\Enums\ErrorsEnum;
+use App\Enums\RulesEnum;
+use App\Enums\TypesEnum;
 
 class TripulanteBilheteValidator extends Validator {
 
     public static function validateTryRandomNumbers(array $data) {
 
         $fields = [
-            'id_tripulante' => [ $data['id_tripulante'] ?? '', 'integer' ],
-            'id_sorteio' => [ $data['id_sorteio'] ?? '', 'integer' ],
-            'quantTryNumbers' => [ $data['quantTryNumbers'] ?? '', 'integer' ],
-            'quantNumbers' => [ $data['quantNumbers'] ?? '', 'integer' ],
+            'id_tripulante' => [ $data['id_tripulante'] ?? '', TypesEnum::INTEGER->value ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER->value ],
+            'quantTryNumbers' => [ $data['quantTryNumbers'] ?? '', TypesEnum::INTEGER->value ],
+            'quantNumbers' => [ $data['quantNumbers'] ?? '', TypesEnum::INTEGER->value ],
         ];
         
         self::validate($fields);
@@ -30,23 +33,24 @@ class TripulanteBilheteValidator extends Validator {
     }
 
     private static function validateQuantNumbers(array $data) {
-        if ($data['quantNumbers'] < 6 || $data['quantNumbers'] > 10) {
+        if ($data['quantNumbers'] < RulesEnum::MIN_QUANT_NUMBERS->value || 
+            $data['quantNumbers'] > RulesEnum::MAX_QUANT_NUMBERS->value) {
             ValidateQuantNumbersException::exception();
         }
     }
 
     private static function validateQuantTryNumbers(array $data) {
-        if ($data['quantTryNumbers'] < 1) {
+        if ($data['quantTryNumbers'] < RulesEnum::MIN_TRY_NUMBERS->value) {
             ValidateQuantTryNumbersGreaterThanZero::exception();
         }
-        if ($data['quantTryNumbers'] > 50) {
+        if ($data['quantTryNumbers'] > RulesEnum::MAX_TRY_NUMBERS->value) {
             ValidateQuantTryNumbersLessThanFiftyOne::exception();
         }
     }
 
     private static function validateQuantTryMaxNumbers(array $data) {
         $numbersTry = TripulanteBilhete::validateQuantTryMaxNumbers($data);
-        if (($numbersTry + $data['quantTryNumbers'][0]) > 50) {
+        if (($numbersTry + $data['quantTryNumbers'][0]) > RulesEnum::MAX_TRY_NUMBERS->value) {
             ValidateQuantTryNumbersLessThanFiftyOne::exception();
         }
     }

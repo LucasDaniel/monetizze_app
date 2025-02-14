@@ -8,11 +8,11 @@ use App\Models\Tripulante;
 class Database {
     protected static function getConnection() {
 
-        $host = 'host.docker.internal';
-        $port = '5432';
-        $dbname = 'monetizze';
-        $user = 'root';
-        $pass = 'root';
+        $host = $_ENV['DB_HOST'];
+        $port = $_ENV['DB_PORT'];
+        $dbname = $_ENV['DB_NAME'];
+        $user = $_ENV['DB_USER'];
+        $pass = $_ENV['DB_PASS'];
 
         return new PDO("pgsql:host=$host;port=$port;dbname=$dbname",$user,$pass);
     }
