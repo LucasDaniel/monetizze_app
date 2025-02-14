@@ -5,10 +5,6 @@ namespace App\Controllers;
 use App\Models\Database;
 
 class HomeController {
-    
-    public function index() {
-        echo "Hello World";
-    }
 
     public function migrate() {
         print_r("executando migrate<br><br>");

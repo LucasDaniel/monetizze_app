@@ -13,6 +13,9 @@ use App\Exceptions\ValidatorSameNumbers;
 use App\Enums\ErrorsEnum;
 use App\Enums\RulesEnum;
 use App\Enums\TypesEnum;
+use App\Exceptions\ValidateQuantTryNumbersGreaterThanZeroException;
+use App\Exceptions\ValidateQuantTryNumbersLessThanFiftyOneException;
+use App\Exceptions\ValidatorSameNumbersException;
 
 class TripulanteBilheteValidator extends Validator {
 
@@ -62,7 +65,7 @@ class TripulanteBilheteValidator extends Validator {
     private static function validatorSameNumbers(array $data) {
         $numbersSorteio = self::returnValidatorSameNumbers($data);
         if ($numbersSorteio) {
-            ValidatorSameNumbers::exception();
+            ValidatorSameNumbersException::exception();
         }
     }
 

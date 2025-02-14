@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "d07aaa91-a3a5-4a63-8c62-ffdcec394b0d",
+		"name": "monetizze",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "13681762"
+	},
+	"item": [
+		{
+			"name": "tripulante create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost/tripulante/create"
+			},
+			"response": []
+		},
+		{
+			"name": "sorteio create",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost/sorteio/create"
+			},
+			"response": []
+		},
+		{
+			"name": "sorteio generate win numbers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_sorteio\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost/sorteio/generate-win-numbers"
+			},
+			"response": []
+		},
+		{
+			"name": "tripulante_bilhete create random numbers",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_tripulante\":10,\r\n    \"id_sorteio\":1,\r\n    \"quantTryNumbers\":2,\r\n    \"quantNumbers\":10\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost/tripulante-bilhete/create-random-numbers"
+			},
+			"response": []
+		},
+		{
+			"name": "html generate",
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_sorteio\":1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "localhost/html/generate"
+			},
+			"response": []
+		}
+	]
+}
