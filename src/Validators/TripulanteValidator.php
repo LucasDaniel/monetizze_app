@@ -11,7 +11,7 @@ class TripulanteValidator extends Validator {
     public static function validator(array $data) {
 
         $fields = [
-            'nome' => [ $data['nome'] ?? '', TypesEnum::STRING->value ],
+            'nome' => [ $data['nome'] ?? '', TypesEnum::STRING() ],
         ];
 
         self::validate($fields);

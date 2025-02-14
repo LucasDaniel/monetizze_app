@@ -12,7 +12,7 @@ class HtmlValidator extends Validator {
     public static function validator(array $data) {
 
         $fields = [
-            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER->value ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER() ],
         ];
 
         self::validate($fields);

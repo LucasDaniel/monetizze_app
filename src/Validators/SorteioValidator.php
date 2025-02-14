@@ -13,8 +13,8 @@ class SorteioValidator extends Validator {
 
     public static function verifyWinNumbers(array $data) {
         $fields = [
-            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER->value ],
-            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', TypesEnum::STRING->value ],
+            'id_sorteio' => [ $data['id_sorteio'] ?? '', TypesEnum::INTEGER() ],
+            'numeros_sorteados' => [ $data['numeros_sorteados'] ?? '', TypesEnum::STRING() ],
         ];
 
         self::validate($fields);

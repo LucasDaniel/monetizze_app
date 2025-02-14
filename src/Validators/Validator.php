@@ -17,7 +17,7 @@ class Validator {
             if (gettype($value[0]) != $value[1]) {
                 FieldTypeException::exception(['field'=>$field,'type'=>$value[1],'gettype'=>gettype($value[0])]);
             }
-            if ($value[1] == TypesEnum::STRING->value && ctype_digit($value[0])) {
+            if ($value[1] == TypesEnum::STRING() && ctype_digit($value[0])) {
                 FieldNotTypeException::exception(['field'=>$field,'value'=>$value[0],'type'=>$value[1]]);
             }
         }

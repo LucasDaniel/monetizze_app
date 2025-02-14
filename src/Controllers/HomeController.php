@@ -6,6 +6,10 @@ use App\Models\Database;
 
 class HomeController {
 
+    public function index(){
+        echo "Hello world";
+    }
+
     public function migrate() {
         print_r("executando migrate<br><br>");
         Database::migrate();
